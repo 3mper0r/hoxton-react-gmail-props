@@ -1,33 +1,33 @@
-// function LeftMenu(props) {
-//     return (
+function LeftMenu(props) {
+    return (
 
-//         <ul className="inbox-list">
-//             <li
-//                 className={`item ${currentTab === 'inbox' ? 'active' : ''}`}
-//                 onClick={() => setCurrentTab('inbox')}
-//             >
-//                 <span className="label">Inbox</span>
-//                 <span className="count">{unreadEmails.length}</span>
-//             </li>
-//             <li
-//                 className={`item ${currentTab === 'starred' ? 'active' : ''}`}
-//                 onClick={() => setCurrentTab('starred')}
-//             >
-//                 <span className="label">Starred</span>
-//                 <span className="count">{starredEmails.length}</span>
-//             </li>
+        <ul className="inbox-list">
+            <li
+                className={`item ${props.currentTab === 'inbox' ? 'active' : ''}`}
+                onClick={() => props.setCurrentTab('inbox')}
+            >
+                <span className="label">Inbox</span>
+                <span className="count">{props.unreadEmails.length}</span>
+            </li>
+            <li
+                className={`item ${props.currentTab === 'starred' ? 'active' : ''}`}
+                onClick={() => props.setCurrentTab('starred')}
+            >
+                <span className="label">Starred</span>
+                <span className="count">{props.starredEmails.length}</span>
+            </li>
 
-//             <li className="item toggle">
-//                 <label htmlFor="hide-read">Hide read</label>
-//                 <input
-//                     id="hide-read"
-//                     type="checkbox"
-//                     checked={hideRead}
-//                     onChange={e => setHideRead(e.target.checked)}
-//                 />
-//             </li>
-//         </ul>
-//     )
-// }
+            <li className="item toggle">
+                <label htmlFor="hide-read">Hide read</label>
+                <input
+                    id="hide-read"
+                    type="checkbox"
+                    checked={props.hideRead}
+                    onChange={e => props.setHideRead(e.target.checked)}
+                />
+            </li>
+        </ul>
+    )
+}
 
-// export default LeftMenu
+export default LeftMenu

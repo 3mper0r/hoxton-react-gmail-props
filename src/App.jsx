@@ -5,6 +5,8 @@ import initialEmails from './data/emails'
 import './App.css'
 import Header from './components/Header'
 import Search from './components/Search-bar'
+import Emails from './components/Emails'
+import LeftMenu from './components/LeftMenu'
 // import LeftMenu from './components/LeftMenu'
 
 const getReadEmails = emails => emails.filter(email => !email.read)
@@ -53,62 +55,27 @@ function App() {
       </header>
       <nav className="left-menu">
 
-        <ul className="inbox-list">
-          <li
-            className={`item ${currentTab === 'inbox' ? 'active' : ''}`}
-            onClick={() => setCurrentTab('inbox')}
-          >
-            <span className="label">Inbox</span>
-            <span className="count">{unreadEmails.length}</span>
-          </li>
-          <li
-            className={`item ${currentTab === 'starred' ? 'active' : ''}`}
-            onClick={() => setCurrentTab('starred')}
-          >
-            <span className="label">Starred</span>
-            <span className="count">{starredEmails.length}</span>
-          </li>
+        <LeftMenu
+          currentTab={currentTab}
 
-          <li className="item toggle">
-            <label htmlFor="hide-read">Hide read</label>
-            <input
-              id="hide-read"
-              type="checkbox"
-              checked={hideRead}
-              onChange={e => setHideRead(e.target.checked)}
-            />
-          </li>
-        </ul>
+          unreadEmails={unreadEmails}
 
+          setCurrentTab={setCurrentTab}
+
+          starredEmails={starredEmails}
+
+          toggleStar={toggleStar}
+
+          hideRead={hideRead}
+          setHideRead={setHideRead}
+        />
       </nav>
       <main className="emails">
-        <ul>
-          {filteredEmails.map((email, index) => (
-            <li
-              key={index}
-              className={`email ${email.read ? 'read' : 'unread'}`}
-            >
-              <div className="select">
-                <input
-                  className="select-checkbox"
-                  type="checkbox"
-                  checked={email.read}
-                  onChange={() => toggleRead(email)}
-                />
-              </div>
-              <div className="star">
-                <input
-                  className="star-checkbox"
-                  type="checkbox"
-                  checked={email.starred}
-                  onChange={() => toggleStar(email)}
-                />
-              </div>
-              <div className="sender">{email.sender}</div>
-              <div className="title">{email.title}</div>
-            </li>
-          ))}
-        </ul>
+        <Emails
+          filteredEmails={filteredEmails}
+          toggleRead={toggleRead}
+          toggleStar={toggleStar}
+        />
       </main>
     </div>
   )
